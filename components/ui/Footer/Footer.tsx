@@ -17,7 +17,7 @@ export default function Footer() {
             <span className="rounded-full border border-zinc-700 mr-2">
               <Logo />
             </span>
-            <span>ACME</span>
+            <span>Kundali</span>
           </Link>
         </div>
         <div className="col-span-1 lg:col-span-2">
@@ -32,7 +32,7 @@ export default function Footer() {
             </li>
             <li className="py-3 md:py-0 md:pb-4">
               <Link
-                href="/"
+                href="https://coffeetobusiness.com/about"
                 className="text-white hover:text-zinc-200 transition ease-in-out duration-150"
               >
                 About
@@ -40,23 +40,23 @@ export default function Footer() {
             </li>
             <li className="py-3 md:py-0 md:pb-4">
               <Link
-                href="/"
+                href="https://coffeetobusiness.freshteam.com/career"
                 className="text-white hover:text-zinc-200 transition ease-in-out duration-150"
               >
                 Careers
               </Link>
             </li>
-            <li className="py-3 md:py-0 md:pb-4">
+            {/* <li className="py-3 md:py-0 md:pb-4">
               <Link
                 href="/"
                 className="text-white hover:text-zinc-200 transition ease-in-out duration-150"
               >
                 Blog
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
-        <div className="col-span-1 lg:col-span-2">
+        {/* <div className="col-span-1 lg:col-span-2">
           <ul className="flex flex-initial flex-col md:flex-1">
             <li className="py-3 md:py-0 md:pb-4">
               <p className="text-white font-bold hover:text-zinc-200 transition ease-in-out duration-150">
@@ -80,12 +80,12 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
         <div className="col-span-1 lg:col-span-6 flex items-start lg:justify-end text-white">
           <div className="flex space-x-6 items-center h-10">
             <a
               aria-label="Github Repository"
-              href="https://github.com/vercel/nextjs-subscription-payments"
+              href="https://github.com/cptiwari20/kundali-chatgpt"
             >
               <GitHub />
             </a>
@@ -94,7 +94,7 @@ export default function Footer() {
       </div>
       <div className="py-12 flex flex-col md:flex-row justify-between items-center space-y-4 bg-zinc-900">
         <div>
-          <span>&copy; 2020 ACME, Inc. All rights reserved.</span>
+          <span>&copy; 2023 coffeetobusiness, Inc. All rights reserved.</span>
         </div>
         <div className="flex items-center">
           <span className="text-white">Crafted by</span>
