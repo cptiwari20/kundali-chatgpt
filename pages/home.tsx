@@ -33,11 +33,18 @@ export default function Home(props: Props) {
   const [location, setLocation] = useState("");
   const [results, setResult] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("")
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setLoading(true)
+    setError("")
     setResult("")
+    if (!name || !time || !location || !date) {
+        setError("Please fill all the inputs!")
+        setLoading(false)
+        return;
+    }
+    setLoading(true)
     // Call API to generate Kundali result with user input
     try {
         // Make API call to generate Kundali result
@@ -54,10 +61,12 @@ export default function Home(props: Props) {
           const { result } = await response.json();
           setResult(result?.content ?? "Failed to load content");
         } else {
+            setError("Failed to generate Kundali result.")
           console.error("Failed to generate Kundali result.");
         }
         setLoading(false)
-      } catch (error) {
+      } catch (error: any) {
+        setError(error?.message)
         setLoading(false)
         console.error(error);
       }
@@ -66,8 +75,8 @@ export default function Home(props: Props) {
 
   return (
     <div className="min-h-screen flex justify-center items-center">
-    <div className="grid grid-cols-3 gap-4">
-        <div className="bg-gray-400 p-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+        <div className="bg-gray-400 p-4 rounded-xl">
             <form onSubmit={handleSubmit} className="max-w-md mx-auto">
                 <div className="mb-4">
                 <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Name:</label>
@@ -85,6 +94,7 @@ export default function Home(props: Props) {
                     type="date"
                     id="date"
                     value={date}
+                    // min={Date()}
                     onChange={(event) => setDate(event.target.value)}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
@@ -109,12 +119,13 @@ export default function Home(props: Props) {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
                 </div>
+                {error && <p className="text-red-700 pb-2">{error}</p>}
                 <button disabled={loading} type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                 { loading? <LoadingDots /> : "Get Kundali Summary"}
                 </button>
             </form>
         </div>
-        <div className="bg-gray-500 p-5">
+        <div className="bg-gray-500 p-5 rounded-xl">
             
             {results ? <div className="border border-gray-300 rounded-md shadow-lg p-6">
                     {results}
