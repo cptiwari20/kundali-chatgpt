@@ -14,8 +14,8 @@ interface Props extends PropsWithChildren {
 export default function Layout({ children, meta: pageMeta }: Props) {
   const router = useRouter();
   const meta = {
-    title: 'Next.js Subscription Starter',
-    description: 'Brought to you by Vercel, Stripe, and Supabase.',
+    title: 'ChatGPT Kundali APp',
+    description: 'Simple app to know about yourself with Chatgpt',
     cardImage: '/og.png',
     ...pageMeta
   };
@@ -29,7 +29,7 @@ export default function Layout({ children, meta: pageMeta }: Props) {
         <meta content={meta.description} name="description" />
         <meta
           property="og:url"
-          content={`https://subscription-starter.vercel.app${router.asPath}`}
+          content={`https://kundali-chatgpt.vercel.app/`}
         />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content={meta.title} />
