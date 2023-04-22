@@ -6,11 +6,20 @@ import Logo from '@/components/icons/Logo';
 import { useUser } from '@/utils/useUser';
 
 import s from './Navbar.module.css';
+import { useState } from 'react';
 
 const Navbar = () => {
+  const [loading, setLoading ] = useState(false)
   const router = useRouter();
   const supabaseClient = useSupabaseClient();
   const { user } = useUser();
+
+  const handleSignOut = async () => {
+    setLoading(true)
+    await supabaseClient.auth.signOut();
+    router.push('/signin');
+    setLoading(false)
+  }
 
   return (
     <nav className={s.root}>
@@ -20,12 +29,12 @@ const Navbar = () => {
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex justify-between align-center flex-row py-4 md:py-6 relative">
           <div className="flex flex-1 items-center">
-            <Link href="/" className={s.logo} aria-label="Logo">
+            <Link href="/" className={s.logo} aria-label="Kundali App">
               <Logo />
             </Link>
             <nav className="space-x-2 ml-6 hidden lg:block">
-              <Link href="/" className={s.link}>
-                Pricing
+              <Link href="/home" className={s.link}>
+                Kundali
               </Link>
               <Link href="/account" className={s.link}>
                 Account
@@ -37,12 +46,9 @@ const Navbar = () => {
             {user ? (
               <span
                 className={s.link}
-                onClick={async () => {
-                  await supabaseClient.auth.signOut();
-                  router.push('/signin');
-                }}
+                onClick={handleSignOut}
               >
-                Sign out
+                {loading? "Signing Out.." :"Sign out"}
               </span>
             ) : (
               <Link href="/signin" className={s.link}>

@@ -15,7 +15,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (user) {
-      router.replace('/account');
+      router.replace('/home');
     }
   }, [user]);
 
@@ -29,7 +29,7 @@ const SignIn = () => {
           <div className="flex flex-col space-y-4">
             <Auth
               supabaseClient={supabaseClient}
-              providers={['github']}
+              providers={[]}
               redirectTo={getURL()}
               magicLink={true}
               appearance={{

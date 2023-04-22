@@ -1,10 +1,10 @@
 import cn from 'classnames';
 import React, { forwardRef, useRef, ButtonHTMLAttributes } from 'react';
-import { mergeRefs } from 'react-merge-refs';
 
 import LoadingDots from '@/components/ui/LoadingDots';
 
 import styles from './Button.module.css';
+
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'slim' | 'flat';
@@ -15,6 +15,20 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = forwardRef<HTMLButtonElement, Props>((props, buttonRef) => {
+  function mergeRefs<T = any>(
+    refs: Array<React.MutableRefObject<T> | React.LegacyRef<T>>
+  ): React.RefCallback<T> {
+    return (value) => {
+      refs.forEach((ref) => {
+        if (typeof ref === "function") {
+          ref(value);
+        } else if (ref != null) {
+          (ref as React.MutableRefObject<T | null>).current = value;
+        }
+      });
+    };
+  }
+
   const {
     className,
     variant = 'flat',
