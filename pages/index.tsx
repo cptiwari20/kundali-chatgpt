@@ -14,7 +14,14 @@ export default function Index({ products }: Props) {
         <div className="sm:flex sm:flex-col sm:align-center">
                   </div>
         <p className="text-6xl font-extrabold text-white sm:text-center sm:text-6xl">
-          Know yourself with your Name, Date of birth and place. Know your <span className="text-pink-500 underline">Kundali</span>
+          Know yourself with your Name, Date of birth and place. Know your 
+          {" "}<a
+              className="text-pink-500 underline"
+              href="/home"
+              rel="noopener noreferrer"
+            >
+              Kundali
+            </a>
         </p>
       </div>
     </section>
