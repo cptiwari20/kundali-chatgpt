@@ -48,6 +48,7 @@ const generateKundali = async (name: string, date: string, time: string, locatio
 
       // Extract generated Kundali result from API response
       const responseData: OpenAIResponse = await response.json();
+      console.log(responseData, responseData.choices)
       const { message } = responseData.choices[0];
       return message;
     } catch (error) {
